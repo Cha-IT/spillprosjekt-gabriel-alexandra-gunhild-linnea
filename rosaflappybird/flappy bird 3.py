@@ -58,14 +58,6 @@ def collision_check(pipes, bird_x, bird_y):
         return True
     return False
   
-    # Load background image
-    background = pygame.image.load('pinkbackground.webp')
-    background = pygame.transform.scale(background, (screen_width, screen_height))
-
-    # Load bird image
-    bird_image = pygame.image.load('bunny.png')
-    bird_image = pygame.transform.scale(bird_image, (bird_width, bird_height))
-
 
 # Game loop
 running = True
@@ -111,6 +103,15 @@ while running:
             score += 1
 
     display_score(score)  # Update the score display
+    
+      # Load background image
+    background = pygame.image.load('pinkbackground.webp')
+    background = pygame.transform.scale(background, (screen_width, screen_height))
+
+    # Load bird image
+    bird_image = pygame.image.load('bunny.png')
+    bird_image = pygame.transform.scale(bird_image, (bird_width, bird_height))
+
      
    
     # Draw the background
