@@ -31,12 +31,12 @@ brown = (138, 51, 36)
 clock = pygame.time.Clock()
 
 # Bird characteristics
-bird_width = 30
-bird_height = 30
+bird_width = 150
+bird_height = 75
 bird_x = 50
 bird_y = screen_height // 2
-bird_velocity = 9
-gravity = 0.40
+bird_velocity = 17
+gravity = 0.25
 
 # Load bird image
 bird_image = pygame.image.load("christmas/santa_sleigh.png")
@@ -60,7 +60,7 @@ def display_score(score):
 
 
 def draw_bird(x, y):
-    pygame.draw.rect(screen, blue, (x, y, bird_width, bird_height))
+    screen.blit(bird_image, (x, y))
 
 
 def draw_pipe(x, y, height):
@@ -83,12 +83,10 @@ def collision_check(pipes, bird_x, bird_y):
     return False
 
 
-# Function to check if the bird has passed a pipe
 def passed_pipe(pipe, bird_x):
     return bird_x > pipe["x"] + pipe_width // 2
 
 
-# Restart function
 def restart_game():
     global bird_y, bird_velocity, pipes, score, game_over
     bird_y = screen_height // 2
@@ -157,10 +155,10 @@ while running:
 
     if game_over:
         font = pygame.font.Font(None, 36)
-        text = font.render("Game Over. Score: " + str(score), True, black)
+        text = font.render("Game Over. Score: " + str(score), True, blue)
         text_rect = text.get_rect(center=(screen_width // 2, screen_height // 2))
         screen.blit(text, text_rect)
-        restart_text = font.render("Press 'R' to restart", True, black)
+        restart_text = font.render("Press 'R' to restart", True, blue)
         restart_rect = restart_text.get_rect(
             center=(screen_width // 2, screen_height // 2 + 40)
         )
@@ -168,6 +166,5 @@ while running:
 
     pygame.display.update()
     clock.tick(60)
-
 
 pygame.quit()
