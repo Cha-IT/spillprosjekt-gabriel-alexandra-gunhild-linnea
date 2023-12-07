@@ -2,13 +2,13 @@ import pygame
 import random
 from pygame import mixer
 
-#Instantiate mixer
+# Instantiate mixer
 mixer.init()
 
-#Load audio file
-mixer.music.load('christmas/Julemusikk.mp3')
+# Load audio file
+mixer.music.load("christmas/Julemusikk.mp3")
 
-#Play the music
+# Play the music
 mixer.music.play()
 
 # Initialize Pygame
@@ -24,6 +24,8 @@ pygame.display.set_caption("Flappy Bird")
 black = (0, 0, 0)
 white = (255, 255, 255)
 blue = (0, 0, 255)
+grey = (190, 190, 190, 255)
+brown = (138, 51, 36)
 
 # Clock to control frame rate
 clock = pygame.time.Clock()
@@ -41,6 +43,7 @@ pipe_width = 50
 pipe_gap = 225
 pipe_velocity = 2
 pipes = []
+
 # Score
 score = 0
 font = pygame.font.Font(None, 36)
@@ -57,7 +60,7 @@ def draw_bird(x, y):
 
 
 def draw_pipe(x, y, height):
-    pygame.draw.rect(screen, white, (x, y, pipe_width, height))
+    pygame.draw.rect(screen, brown, (x, y, pipe_width, height))
     pygame.draw.rect(
         screen, white, (x, y + height + pipe_gap, pipe_width, screen_height)
     )

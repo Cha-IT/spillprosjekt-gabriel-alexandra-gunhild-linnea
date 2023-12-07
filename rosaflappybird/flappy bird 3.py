@@ -1,6 +1,17 @@
 import pygame
 import random
 
+from pygame import mixer
+
+#Instantiate mixer
+mixer.init()
+
+#Load audio file
+mixer.music.load('rosaflappybird/Rosamusikk.mp3')
+
+#Play the music
+mixer.music.play()
+
 # Initialize Pygame
 pygame.init()
 
@@ -23,15 +34,12 @@ bird_width = 60
 bird_height = 80
 bird_x = 50
 bird_y = screen_height // 2
-bird_velocity = 9
-gravity = 0.40 
-# Load bird image
-bird_image = pygame.image.load('rosaflappybird/bunny.png')
-bird_image = pygame.transform.scale(bird_image, (bird_width, bird_height))
+bird_velocity = 60
+gravity = 0.25
 
 # Pipe characteristics
 pipe_width = 50
-pipe_gap = 300
+pipe_gap = 225
 pipe_velocity = 2
 pipes = []
 
@@ -125,10 +133,12 @@ while running:
     display_score(score)  # Update the score display
     
       # Load background image
-    background = pygame.image.load('rosaflappybird/pinkbackground.webp')
+    background = pygame.image.load('pinkbackground.webp')
     background = pygame.transform.scale(background, (screen_width, screen_height))
 
- 
+    # Load bird image
+    bird_image = pygame.image.load('bunny.png')
+    bird_image = pygame.transform.scale(bird_image, (bird_width, bird_height))
 
      
    
@@ -151,6 +161,8 @@ while running:
 
     pygame.display.update()
     clock.tick(60)
+
+
 
 pygame.quit()
   
