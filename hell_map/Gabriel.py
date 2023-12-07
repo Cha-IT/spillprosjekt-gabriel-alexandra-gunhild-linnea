@@ -6,7 +6,7 @@ from pygame import mixer
 mixer.init()
 
 # Load audio file
-mixer.music.load("christmas/Julemusikk.mp3")
+mixer.music.load("Hell_map/Hellmusikk.mp3")
 
 # Play the music
 mixer.music.play()
@@ -31,8 +31,8 @@ brown = (138, 51, 36)
 clock = pygame.time.Clock()
 
 # Bird characteristics
-bird_width = 150
-bird_height = 75
+bird_width = 100
+bird_height = 50
 bird_x = 50
 bird_y = screen_height // 2
 bird_velocity = 17
@@ -155,10 +155,10 @@ while running:
 
     if game_over:
         font = pygame.font.Font(None, 36)
-        text = font.render("Game Over. Score: " + str(score), True, blue)
+        text = font.render("Game Over. Score: " + str(score), True, black)
         text_rect = text.get_rect(center=(screen_width // 2, screen_height // 2))
         screen.blit(text, text_rect)
-        restart_text = font.render("Press 'R' to restart", True, blue)
+        restart_text = font.render("Press 'R' to restart", True, black)
         restart_rect = restart_text.get_rect(
             center=(screen_width // 2, screen_height // 2 + 40)
         )
