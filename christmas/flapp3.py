@@ -1,5 +1,15 @@
 import pygame
 import random
+from pygame import mixer
+
+#Instantiate mixer
+mixer.init()
+
+#Load audio file
+mixer.music.load('christmas/Julemusikk.mp3')
+
+#Play the music
+mixer.music.play()
 
 # Initialize Pygame
 pygame.init()
@@ -98,11 +108,11 @@ while running:
             restart_game()
 
     # Load background image
-    background = pygame.image.load("christmas_background.jpg")
+    background = pygame.image.load("christmas/christmas_background.jpg")
     background = pygame.transform.scale(background, (screen_width, screen_height))
 
     # Character
-    bird_image = pygame.image.load("santa_sleigh.png")
+    bird_image = pygame.image.load("christmas/santa_sleigh.png")
     bird_image = pygame.transform.scale(bird_image, (bird_width, bird_height))
 
     # Update bird position
@@ -155,5 +165,6 @@ while running:
 
     pygame.display.update()
     clock.tick(60)
+
 
 pygame.quit()
