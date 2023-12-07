@@ -111,11 +111,11 @@ while running:
             restart_game()
 
     # Load background image
-    background = pygame.image.load("christmas/christmas_background.jpg")
+    background = pygame.image.load("hell_map/hell.jpg")
     background = pygame.transform.scale(background, (screen_width, screen_height))
 
     # Character
-    bird_image = pygame.image.load("christmas/santa_sleigh.png")
+    bird_image = pygame.image.load("hell_map/raven_bird.png")
     bird_image = pygame.transform.scale(bird_image, (bird_width, bird_height))
 
     # Update bird position
