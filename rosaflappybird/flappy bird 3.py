@@ -61,16 +61,33 @@ def collision_check(pipes, bird_x, bird_y):
         return True
     return False
   
+  
+
+# Restart function
+def restart_game():
+    global bird_y, bird_velocity, pipes, score, game_over
+    bird_y = screen_height // 2
+    bird_velocity = 17
+    pipes = []
+    score = 0
+    game_over = False
+
 
 # Game loop
+game_over = False
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.KEYDOWN and (event.key == pygame.K_SPACE or event.key == pygame.K_UP):
-            bird_velocity = -10
-
+        if (
+            not game_over
+            and event.type == pygame.KEYDOWN
+            and (event.key == pygame.K_SPACE or event.key == pygame.K_UP)
+        ):
+            bird_velocity = -6
+        if game_over and event.type == pygame.KEYDOWN and event.key == pygame.K_r:
+            restart_game()
     # Update bird position
     bird_velocity += gravity
     bird_y += bird_velocity
