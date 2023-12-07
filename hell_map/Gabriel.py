@@ -31,12 +31,16 @@ brown = (138, 51, 36)
 clock = pygame.time.Clock()
 
 # Bird characteristics
-bird_width = 30
-bird_height = 30
+bird_width = 150
+bird_height = 75
 bird_x = 50
 bird_y = screen_height // 2
 bird_velocity = 17
 gravity = 0.25
+
+# Load bird image
+bird_image = pygame.image.load("hell_map/raven_bird.png")
+bird_image = pygame.transform.scale(bird_image, (bird_width, bird_height))
 
 # Pipe characteristics
 pipe_width = 50
@@ -56,7 +60,7 @@ def display_score(score):
 
 
 def draw_bird(x, y):
-    pygame.draw.rect(screen, blue, (x, y, bird_width, bird_height))
+    screen.blit(bird_image, (x, y))
 
 
 def draw_pipe(x, y, height):
@@ -79,12 +83,10 @@ def collision_check(pipes, bird_x, bird_y):
     return False
 
 
-# Function to check if the bird has passed a pipe
 def passed_pipe(pipe, bird_x):
     return bird_x > pipe["x"] + pipe_width // 2
 
 
-# Restart function
 def restart_game():
     global bird_y, bird_velocity, pipes, score, game_over
     bird_y = screen_height // 2
@@ -113,10 +115,6 @@ while running:
     # Load background image
     background = pygame.image.load("hell_map/hell.jpg")
     background = pygame.transform.scale(background, (screen_width, screen_height))
-
-    # Character
-    bird_image = pygame.image.load("hell_map/raven_bird.png")
-    bird_image = pygame.transform.scale(bird_image, (bird_width, bird_height))
 
     # Update bird position
     bird_velocity += gravity
@@ -168,6 +166,5 @@ while running:
 
     pygame.display.update()
     clock.tick(60)
-
 
 pygame.quit()
