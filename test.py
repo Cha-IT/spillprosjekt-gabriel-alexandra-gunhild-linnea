@@ -1,68 +1,62 @@
 import pygame
 import sys
 
-# initializing the constructor
-pygame.init()
 
-# screen resolution
-res = (720, 720)
+class Button:
+    def __init__(self, x, y, width, height, color, text, action=None):
+        self.rect = pygame.Rect(x, y, width, height)
+        self.color = color
+        self.text = text
+        self.action = action
 
-# opens up a window
-screen = pygame.display.set_mode(res)
+    def draw(self, screen, outline=None):
+        pygame.draw.rect(screen, self.color, self.rect, 0)
 
-# white color
-color = (255, 255, 255)
+        if outline:
+            pygame.draw.rect(screen, outline, self.rect, 2)
 
-# light shade of the button
-color_light = (170, 170, 170)
+        font = pygame.font.Font(None, 36)
+        text = font.render(self.text, True, (255, 255, 255))
+        text_rect = text.get_rect(
+            center=(
+                self.rect.x + self.rect.width / 2,
+                self.rect.y + self.rect.height / 2,
+            )
+        )
+        screen.blit(text, text_rect)
 
-# dark shade of the button
-color_dark = (100, 100, 100)
+    def is_clicked(self, pos):
+        return self.rect.collidepoint(pos)
 
-# stores the width of the
-width = screen.get_width()
 
-# stores the height of the
-height = screen.get_height()
+# Start Page
+def start_page():
+    pygame.init()
 
-# defining a font
-smallfont = pygame.font.SysFont("Corbel", 35)
+    screen_width = 800
+    screen_height = 600
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Start Page")
 
-# rendering a text written in
-# this font
-text = smallfont.render("Christmas", True, color)
+    clock = pygame.time.Clock()
 
-while True:
-    for ev in pygame.event.get():
-        if ev.type == pygame.QUIT:
-            pygame.quit()
+    start_button = Button(
+        300, 200, 200, 50, (0, 128, 255), "Start Game", action=start_game
+    )
 
-        # checks if a mouse is clicked
-        if ev.type == pygame.MOUSEBUTTONDOWN:
-            # if the mouse is clicked on the
-            # button the game is terminated
-            if (
-                width / 2 <= mouse[0] <= width / 2 + 140
-                and height / 2 <= mouse[1] <= height / 2 + 40
-            ):
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
                 pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if start_button.is_clicked(pygame.mouse.get_pos()):
+                    start_button.action()
 
-    # stores the (x,y) coordinates into
-    # the variable as a tuple
-    mouse = pygame.mouse.get_pos()
+        screen.fill((255, 255, 255))
+        start_button.draw(screen, (0, 0, 0))
 
-    # if mouse is hovered on a button it
-    # changes to lighter shade
-    if (
-        width / 2 <= mouse[0] <= width / 2 + 140
-        and height / 2 <= mouse[1] <= height / 2 + 40
-    ):
-        pygame.draw.rect(screen, color_light, [width / 2, height / 2, 140, 40])
-    else:
-        pygame.draw.rect(screen, color_dark, [width / 2, height / 2, 140, 40])
-
-    # superimposing the text onto our button
-    screen.blit(text, (width / 2 + 50, height / 2))
-
-    # updates the frames of the game
-    pygame.display.update()
+        pygame.display.flip()
+        clock.tick(30)
