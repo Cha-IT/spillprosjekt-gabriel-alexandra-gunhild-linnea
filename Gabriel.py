@@ -36,27 +36,37 @@ pipes = []
 score = 0
 font = pygame.font.Font(None, 36)
 
+
 # Functions
 def display_score(score):
     score_display = font.render(f"Score: {score}", True, white)
     screen.blit(score_display, (10, 10))
 
+
 def draw_bird(x, y):
-         # Draw bird image
+    # Draw bird image
     screen.blit(bird_image, (bird_x, bird_y))
+
 
 def draw_pipe(x, y, height):
     pygame.draw.rect(screen, white, (x, y, pipe_width, height))
-    pygame.draw.rect(screen, white, (x, y + height + pipe_gap, pipe_width, screen_height))
+    pygame.draw.rect(
+        screen, white, (x, y + height + pipe_gap, pipe_width, screen_height)
+    )
+
 
 def collision_check(pipes, bird_x, bird_y):
     for pipe in pipes:
-        if bird_x + bird_width > pipe['x'] and bird_x < pipe['x'] + pipe_width:
-            if bird_y < pipe['height'] or bird_y + bird_height > pipe['height'] + pipe_gap:
+        if bird_x + bird_width > pipe["x"] and bird_x < pipe["x"] + pipe_width:
+            if (
+                bird_y < pipe["height"]
+                or bird_y + bird_height > pipe["height"] + pipe_gap
+            ):
                 return True
     if bird_y > screen_height or bird_y < 0:
         return True
     return False
+
 
 # Game loop
 running = True
@@ -64,7 +74,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.KEYDOWN and (event.key == pygame.K_SPACE or event.key == pygame.K_UP):
+        if event.type == pygame.KEYDOWN and (
+            event.key == pygame.K_SPACE or event.key == pygame.K_UP
+        ):
             bird_velocity = -10
 
     # Update bird position
@@ -73,42 +85,38 @@ while running:
 
     # Update pipes
     for pipe in pipes:
-        pipe['x'] -= pipe_velocity
+        pipe["x"] -= pipe_velocity
 
     # Add new pipe
-    if len(pipes) > 0 and pipes[0]['x'] < -pipe_width:
+    if len(pipes) > 0 and pipes[0]["x"] < -pipe_width:
         pipes.pop(0)
-    if len(pipes) == 0 or pipes[-1]['x'] < screen_width - 200:
+    if len(pipes) == 0 or pipes[-1]["x"] < screen_width - 200:
         height = random.randint(50, screen_height - 50 - pipe_gap)
-        pipes.append({'x': screen_width, 'height': height})
+        pipes.append({"x": screen_width, "height": height})
 
     # Check for collisions
     if collision_check(pipes, bird_x, bird_y):
         running = False
 
-    # Draw everything
+        # Draw everything
         display_score(score)  # Update the score display
-    
+
     # Load background image
-    background = pygame.image.load('pinkbackground.webp')
+    background = pygame.image.load("pinkbackground.webp")
     background = pygame.transform.scale(background, (screen_width, screen_height))
 
     # Load bird image
-    bird_image = pygame.image.load('bunny.png')
+    bird_image = pygame.image.load("bunny.png")
     bird_image = pygame.transform.scale(bird_image, (bird_width, bird_height))
 
-
-... (12 lines left)
-Collapse
-message.txt
-4 KB
-Game loop
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.KEYDOWN and (event.key == pygame.K_SPACE or event.key == pygame.K_UP):
+        if event.type == pygame.KEYDOWN and (
+            event.key == pygame.K_SPACE or event.key == pygame.K_UP
+        ):
             bird_velocity = -10
 
     # Update bird position
@@ -117,18 +125,18 @@ while running:
 
     # Update pipes
     for pipe in pipes:
-        pipe['x'] -= pipe_velocity
+        pipe["x"] -= pipe_velocity
 
     # Add new pipe
-    if len(pipes) > 0 and pipes[0]['x'] < -pipe_width:
+    if len(pipes) > 0 and pipes[0]["x"] < -pipe_width:
         pipes.pop(0)
-    if len(pipes) == 0 or pipes[-1]['x'] < screen_width - 200:
+    if len(pipes) == 0 or pipes[-1]["x"] < screen_width - 200:
         height = random.randint(50, screen_height - 50 - pipe_gap)
-        pipes.append({'x': screen_width, 'height': height})
+        pipes.append({"x": screen_width, "height": height})
 
     # Check for collisions
     if collision_check(pipes, bird_x, bird_y):
         running = False
 
-    # Draw everything
+        # Draw everything
         display_score(score)  # Update the score display

@@ -18,7 +18,7 @@ white = (255, 255, 255)
 clock = pygame.time.Clock()
 
 # Load background image
-background = pygame.image.load("christmas_background.jpg")
+background = pygame.image.load("christmas/christmas_background.jpg")
 background = pygame.transform.scale(background, (screen_width, screen_height))
 
 # Main game loop
