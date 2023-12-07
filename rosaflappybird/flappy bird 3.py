@@ -34,12 +34,15 @@ bird_width = 60
 bird_height = 80
 bird_x = 50
 bird_y = screen_height // 2
-bird_velocity = 60
-gravity = 0.25
+bird_velocity = 9
+gravity = 0.40
+# Load bird image
+bird_image = pygame.image.load('rosaflappybird/bunny.png')
+bird_image = pygame.transform.scale(bird_image, (bird_width, bird_height))
 
 # Pipe characteristics
 pipe_width = 50
-pipe_gap = 225
+pipe_gap = 300
 pipe_velocity = 2
 pipes = []
 
@@ -56,6 +59,8 @@ def draw_bird(x, y):
          # Draw bird image
     screen.blit(bird_image, (bird_x, bird_y))
 
+   
+    
 def draw_pipe(x, y, height):
     pygame.draw.rect(screen, white, (x, y, pipe_width, height))
     pygame.draw.rect(screen, white, (x, y + height + pipe_gap, pipe_width, screen_height))
@@ -69,33 +74,16 @@ def collision_check(pipes, bird_x, bird_y):
         return True
     return False
   
-  
-
-# Restart function
-def restart_game():
-    global bird_y, bird_velocity, pipes, score, game_over
-    bird_y = screen_height // 2
-    bird_velocity = 17
-    pipes = []
-    score = 0
-    game_over = False
-
 
 # Game loop
-game_over = False
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if (
-            not game_over
-            and event.type == pygame.KEYDOWN
-            and (event.key == pygame.K_SPACE or event.key == pygame.K_UP)
-        ):
-            bird_velocity = -6
-        if game_over and event.type == pygame.KEYDOWN and event.key == pygame.K_r:
-            restart_game()
+        if event.type == pygame.KEYDOWN and (event.key == pygame.K_SPACE or event.key == pygame.K_UP):
+            bird_velocity = -10
+
     # Update bird position
     bird_velocity += gravity
     bird_y += bird_velocity
@@ -131,16 +119,12 @@ while running:
             score += 1
 
     display_score(score)  # Update the score display
-    
-      # Load background image
-    background = pygame.image.load('pinkbackground.webp')
+ 
+
+       # Load background image
+    background = pygame.image.load('rosaflappybird/pinkbackground.webp')
     background = pygame.transform.scale(background, (screen_width, screen_height))
 
-    # Load bird image
-    bird_image = pygame.image.load('bunny.png')
-    bird_image = pygame.transform.scale(bird_image, (bird_width, bird_height))
-
-     
    
     # Draw the background
     screen.blit(background, (0, 0))
@@ -161,8 +145,6 @@ while running:
 
     pygame.display.update()
     clock.tick(60)
-
-
 
 pygame.quit()
   
