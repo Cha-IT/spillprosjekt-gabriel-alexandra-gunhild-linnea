@@ -41,7 +41,7 @@ def start_page():
     clock = pygame.time.Clock()
 
     start_button = Button(
-        300, 200, 200, 50, (0, 128, 255), "Start Game", action=start_game
+        300, 200, 200, 50, (0, 128, 255), "Start Game", action=start_game.py
     )
 
     running = True
