@@ -35,7 +35,9 @@ smallfont = pygame.font.SysFont("Corbel", 35)
 
 # rendering a text written in
 # this font
-text = smallfont.render("quit", True, color)
+text = smallfont.render("Hell", True, color)
+text2 = smallfont.render("Christmas", True, color)
+text3 = smallfont.render("Rosabane", True, color)
 
 while True:
     for ev in pygame.event.get():
@@ -47,20 +49,20 @@ while True:
             # if the mouse is clicked on the
             # button the game is terminated
             if (
-                width / 2 <= mouse[0] <= width / 2 + 50
-                and height / 2 <= mouse[1] <= height / 2 + 40
+                width / 2 <= mouse[0] <= width / 2
+                and height / 2 - 80 <= mouse[1] <= height / 2 - 80
             ):
                 flappy2.christmas()
 
             if (
-                width / 2 + 50 <= mouse[0] <= width / 2 + 100
-                and height / 2 <= mouse[1] <= height / 2 + 40
+                width / 2 <= mouse[0] <= width / 2
+                and height / 2 <= mouse[1] <= height / 2
             ):
                 hell_game.hell()
 
             if (
-                width / 2 + 100 <= mouse[0] <= width / 2 + 150
-                and height / 2 <= mouse[1] <= height / 2 + 40
+                width / 2 <= mouse[0] <= width / 2
+                and height / 2 + 80 <= mouse[1] <= height / 2 + 80
             ):
                 rosabane.rosa()
 
@@ -77,25 +79,33 @@ while True:
         width / 2 <= mouse[0] <= width / 2
         and height / 2 - 80 <= mouse[1] <= height / 2 - 80
     ):
-        pygame.draw.rect(screen, color_light, [width / 2, height / 2 - 80, 150, 50])
+        pygame.draw.rect(
+            screen, color_light, [width / 2 - 90, height / 2 - 80, 180, 50]
+        )
     else:
-        pygame.draw.rect(screen, color_dark, [width / 2, height / 2 + -80, 150, 50])
+        pygame.draw.rect(
+            screen, color_dark, [width / 2 - 90, height / 2 + -80, 180, 50]
+        )
 
     if width / 2 <= mouse[0] <= width / 2 and height / 2 <= mouse[1] <= height / 2:
-        pygame.draw.rect(screen, color_light, [width / 2, height / 2, 150, 50])
+        pygame.draw.rect(screen, color_light, [width / 2 - 90, height / 2, 180, 50])
     else:
-        pygame.draw.rect(screen, color_dark, [width / 2, height / 2, 150, 50])
+        pygame.draw.rect(screen, color_dark, [width / 2 - 90, height / 2, 180, 50])
 
     if (
         width / 2 <= mouse[0] <= width / 2
         and height / 2 + 80 <= mouse[1] <= height / 2 + 80
     ):
-        pygame.draw.rect(screen, color_light, [width / 2, height / 2 + 80, 150, 50])
+        pygame.draw.rect(
+            screen, color_light, [width / 2 - 90, height / 2 + 80, 180, 50]
+        )
     else:
-        pygame.draw.rect(screen, color_dark, [width / 2, height / 2 + 80, 150, 50])
+        pygame.draw.rect(screen, color_dark, [width / 2 - 90, height / 2 + 80, 180, 50])
 
     # superimposing the text onto our button
-    screen.blit(text, (width / 2 + 50, height / 2))
+    screen.blit(text, (width / 2 - 75, height / 2 - 70))
+    screen.blit(text2, (width / 2 - 75, height / 2 + 10))
+    screen.blit(text3, (width / 2 - 75, height / 2 + 91))
 
     # updates the frames of the game
     pygame.display.update()
