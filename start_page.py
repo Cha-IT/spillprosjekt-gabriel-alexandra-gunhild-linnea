@@ -1,5 +1,8 @@
 import pygame
 import sys
+import flappy2
+import hell_game
+import rosabane
 
 # initializing the constructor
 pygame.init()
@@ -44,10 +47,22 @@ while True:
             # if the mouse is clicked on the
             # button the game is terminated
             if (
-                width / 2 <= mouse[0] <= width / 2 + 140
+                width / 2 <= mouse[0] <= width / 2 + 50
                 and height / 2 <= mouse[1] <= height / 2 + 40
             ):
-                pygame.quit()
+                flappy2.christmas()
+
+            if (
+                width / 2 + 50 <= mouse[0] <= width / 2 + 100
+                and height / 2 <= mouse[1] <= height / 2 + 40
+            ):
+                hell_game.hell()
+
+            if (
+                width / 2 + 100 <= mouse[0] <= width / 2 + 150
+                and height / 2 <= mouse[1] <= height / 2 + 40
+            ):
+                rosabane.rosa()
 
     # fills the screen with a color
     screen.fill((60, 25, 60))
@@ -59,12 +74,28 @@ while True:
     # if mouse is hovered on a button it
     # changes to lighter shade
     if (
-        width / 2 <= mouse[0] <= width / 2 + 140
+        width / 2 <= mouse[0] <= width / 2 + 50
         and height / 2 <= mouse[1] <= height / 2 + 40
     ):
-        pygame.draw.rect(screen, color_light, [width / 2, height / 2, 140, 40])
+        pygame.draw.rect(screen, color_light, [width / 2, height / 2, 50, 40])
     else:
-        pygame.draw.rect(screen, color_dark, [width / 2, height / 2, 140, 40])
+        pygame.draw.rect(screen, color_dark, [width / 2, height / 2, 50, 40])
+
+    if (
+        width / 2 + 50 <= mouse[0] <= width / 2 + 100
+        and height / 2 <= mouse[1] <= height / 2 + 40
+    ):
+        pygame.draw.rect(screen, color_light, [width / 2 + 50, height / 2, 50, 40])
+    else:
+        pygame.draw.rect(screen, color_dark, [width / 2 + 50, height / 2, 50, 40])
+
+    if (
+        width / 2 + 100 <= mouse[0] <= width / 2 + 150
+        and height / 2 <= mouse[1] <= height / 2 + 40
+    ):
+        pygame.draw.rect(screen, color_light, [width / 2 + 100, height / 2, 50, 40])
+    else:
+        pygame.draw.rect(screen, color_dark, [width / 2 + 100, height / 2, 50, 40])
 
     # superimposing the text onto our button
     screen.blit(text, (width / 2 + 50, height / 2))
