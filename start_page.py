@@ -74,28 +74,25 @@ while True:
     # if mouse is hovered on a button it
     # changes to lighter shade
     if (
-        width / 2 <= mouse[0] <= width / 2 - 80
-        and height / 2 <= mouse[1] <= height / 2 - 80
+        width / 2 <= mouse[0] <= width / 2
+        and height / 2 - 80 <= mouse[1] <= height / 2 - 80
     ):
-        pygame.draw.rect(screen, color_light, [width / 2 - 80, height / 2, 50, 20])
+        pygame.draw.rect(screen, color_light, [width / 2, height / 2 - 80, 150, 50])
     else:
-        pygame.draw.rect(screen, color_dark, [width / 2 - 80, height / 2, 50, 20])
+        pygame.draw.rect(screen, color_dark, [width / 2, height / 2 + -80, 150, 50])
+
+    if width / 2 <= mouse[0] <= width / 2 and height / 2 <= mouse[1] <= height / 2:
+        pygame.draw.rect(screen, color_light, [width / 2, height / 2, 150, 50])
+    else:
+        pygame.draw.rect(screen, color_dark, [width / 2, height / 2, 150, 50])
 
     if (
-        width / 2 + 50 <= mouse[0] <= width / 2 + 0
-        and height / 2 <= mouse[1] <= height / 2 + 0
+        width / 2 <= mouse[0] <= width / 2
+        and height / 2 + 80 <= mouse[1] <= height / 2 + 80
     ):
-        pygame.draw.rect(screen, color_light, [width / 2, height / 2, 50, 40])
+        pygame.draw.rect(screen, color_light, [width / 2, height / 2 + 80, 150, 50])
     else:
-        pygame.draw.rect(screen, color_dark, [width / 2, height / 2, 50, 40])
-
-    if (
-        width / 2 + 100 <= mouse[0] <= width / 2 + 80
-        and height / 2 <= mouse[1] <= height / 2 + 80
-    ):
-        pygame.draw.rect(screen, color_light, [width / 2 + 80, height / 2 + 80, 50, 60])
-    else:
-        pygame.draw.rect(screen, color_dark, [width / 2 + 80, height / 2 + 80, 50, 60])
+        pygame.draw.rect(screen, color_dark, [width / 2, height / 2 + 80, 150, 50])
 
     # superimposing the text onto our button
     screen.blit(text, (width / 2 + 50, height / 2))
