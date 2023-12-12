@@ -77,9 +77,9 @@ while True:
         width / 2 <= mouse[0] <= width / 2 - 80
         and height / 2 <= mouse[1] <= height / 2 - 80
     ):
-        pygame.draw.rect(screen, color_light, [width / 2 - 80, height / 2-80, , 20])
+        pygame.draw.rect(screen, color_light, [width / 2 - 80, height / 2, 50, 20])
     else:
-        pygame.draw.rect(screen, color_dark, [width / 2 - 80, height / 2-80, 50, 20])
+        pygame.draw.rect(screen, color_dark, [width / 2 - 80, height / 2, 50, 20])
 
     if (
         width / 2 + 50 <= mouse[0] <= width / 2 + 0
@@ -93,9 +93,9 @@ while True:
         width / 2 + 100 <= mouse[0] <= width / 2 + 80
         and height / 2 <= mouse[1] <= height / 2 + 80
     ):
-        pygame.draw.rect(screen, color_light, [width / 2 + 80, height / 2+80, 50, 60])
+        pygame.draw.rect(screen, color_light, [width / 2 + 80, height / 2 + 80, 50, 60])
     else:
-        pygame.draw.rect(screen, color_dark, [width / 2 + 80, height / 2+80, 50, 60])
+        pygame.draw.rect(screen, color_dark, [width / 2 + 80, height / 2 + 80, 50, 60])
 
     # superimposing the text onto our button
     screen.blit(text, (width / 2 + 50, height / 2))
