@@ -48,21 +48,22 @@ while True:
         if ev.type == pygame.MOUSEBUTTONDOWN:
             # if the mouse is clicked on the
             # button the game is terminated
+
             if (
-                width / 2 <= mouse[0] <= width / 2
-                and height / 2 - 80 <= mouse[1] <= height / 2 - 80
+                width / 2 - 90 <= mouse[0] <= width / 2 + 90
+                and height / 2 - 80 <= mouse[1] <= height / 2 - 30
             ):
                 flappy2.christmas()
 
             if (
-                width / 2 <= mouse[0] <= width / 2
-                and height / 2 <= mouse[1] <= height / 2
+                width / 2 - 90 <= mouse[0] <= width / 2 + 90
+                and height / 2 <= mouse[1] <= height / 2 + 50
             ):
                 hell_game.hell()
 
             if (
-                width / 2 <= mouse[0] <= width / 2
-                and height / 2 + 80 <= mouse[1] <= height / 2 + 80
+                width / 2 - 90 <= mouse[0] <= width / 2 + 90
+                and height / 2 + 30 <= mouse[1] <= height / 2 + 80
             ):
                 rosabane.rosa()
 

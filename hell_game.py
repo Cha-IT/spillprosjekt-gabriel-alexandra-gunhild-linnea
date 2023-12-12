@@ -150,10 +150,10 @@ def hell():
 
         if game_over:
             font = pygame.font.Font(None, 36)
-            text = font.render("Game Over. Score: " + str(score), True, black)
+            text = font.render("Game Over. Score: " + str(score), True, grey)
             text_rect = text.get_rect(center=(screen_width // 2, screen_height // 2))
             screen.blit(text, text_rect)
-            restart_text = font.render("Press 'R' to restart", True, black)
+            restart_text = font.render("Press 'R' to restart", True, grey)
             restart_rect = restart_text.get_rect(
                 center=(screen_width // 2, screen_height // 2 + 40)
             )
