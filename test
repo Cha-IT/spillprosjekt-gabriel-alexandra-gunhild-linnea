@@ -31,7 +31,7 @@ width = screen.get_width()
 height = screen.get_height()
 
 # defining a font
-smallfont = pygame.font.SysFont("Corbel", 35)
+smallfont = pygame.font.SysFont("Calibri", 35)
 
 # rendering a text written in
 # this font

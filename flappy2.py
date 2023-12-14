@@ -124,11 +124,12 @@ def christmas():
             height = random.randint(50, screen_height - 50 - pipe_gap)
             pipes.append({"x": screen_width, "height": height})
 
-        # Check for passed pipes and update the score
-        for pipe in pipes:
-            if not pipe.get("passed", False) and passed_pipe(pipe, bird_x):
-                pipe["passed"] = True
-                score += 1
+        if game_over == False:
+            # Check for passed pipes and update the score
+            for pipe in pipes:
+                if not pipe.get("passed", False) and passed_pipe(pipe, bird_x):
+                    pipe["passed"] = True
+                    score += 1
 
         # Check for collisions
         if collision_check(pipes, bird_x, bird_y):

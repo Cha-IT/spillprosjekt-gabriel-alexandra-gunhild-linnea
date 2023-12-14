@@ -19,8 +19,8 @@ color = (255, 255, 255)
 # light shade of the button
 color_light = (170, 170, 170)
 
-# dark shade of the button
-color_dark = (100, 100, 100)
+# blue shade of the button
+color_blue = (80, 137, 181)
 
 # stores the width of the
 # screen into a variable
@@ -31,7 +31,7 @@ width = screen.get_width()
 height = screen.get_height()
 
 # defining a font
-smallfont = pygame.font.SysFont("Corbel", 35)
+smallfont = pygame.font.SysFont("Calibri", 35)
 
 # rendering a text written in
 # this font
@@ -89,13 +89,13 @@ while True:
         )
     else:
         pygame.draw.rect(
-            screen, color_dark, [width / 2 - 90, height / 2 + -80, 180, 50]
+            screen, color_blue, [width / 2 - 90, height / 2 + -80, 180, 50]
         )
 
     if width / 2 <= mouse[0] <= width / 2 and height / 2 <= mouse[1] <= height / 2:
         pygame.draw.rect(screen, color_light, [width / 2 - 90, height / 2, 180, 50])
     else:
-        pygame.draw.rect(screen, color_dark, [width / 2 - 90, height / 2, 180, 50])
+        pygame.draw.rect(screen, color_blue, [width / 2 - 90, height / 2, 180, 50])
 
     if (
         width / 2 <= mouse[0] <= width / 2
@@ -105,7 +105,7 @@ while True:
             screen, color_light, [width / 2 - 90, height / 2 + 80, 180, 50]
         )
     else:
-        pygame.draw.rect(screen, color_dark, [width / 2 - 90, height / 2 + 80, 180, 50])
+        pygame.draw.rect(screen, color_blue, [width / 2 - 90, height / 2 + 80, 180, 50])
 
     # superimposing the text onto our button
     screen.blit(text, (width / 2 - 75, height / 2 - 70))
