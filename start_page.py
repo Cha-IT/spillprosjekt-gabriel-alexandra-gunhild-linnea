@@ -8,7 +8,7 @@ import rosabane
 pygame.init()
 
 # screen resolution
-res = (800, 520)
+res = (800, 470)
 
 # opens up a window
 screen = pygame.display.set_mode(res)
@@ -53,13 +53,13 @@ while True:
                 width / 2 - 90 <= mouse[0] <= width / 2 + 90
                 and height / 2 - 80 <= mouse[1] <= height / 2 - 30
             ):
-                flappy2.christmas()
+                hell_game.hell()
 
             if (
                 width / 2 - 90 <= mouse[0] <= width / 2 + 90
                 and height / 2 <= mouse[1] <= height / 2 + 50
             ):
-                hell_game.hell()
+                flappy2.christmas()
 
             if (
                 width / 2 - 90 <= mouse[0] <= width / 2 + 90
@@ -67,8 +67,12 @@ while True:
             ):
                 rosabane.rosa()
 
-    # fills the screen with a color
-    screen.fill((60, 25, 60))
+    # Load background image
+    background = pygame.image.load("./start_page_background.webp")
+    background = pygame.transform.scale(background, (width, height))
+
+    # Draw the background
+    screen.blit(background, (0, 0))
 
     # stores the (x,y) coordinates into
     # the variable as a tuple
