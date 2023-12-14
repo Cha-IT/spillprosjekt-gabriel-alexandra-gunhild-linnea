@@ -1,182 +1,116 @@
 import pygame
-import random
-from pygame import mixer
+import sys
+import flappy2
+import hell_game
+import rosabane
 
-
-# Instantiate mixer
-mixer.init()
-
-# Load audio file
-mixer.music.load("Hell_map/Hellmusikk.mp3")
-
-# Play the music
-mixer.music.play()
-
-# Initialize Pygame
+# initializing the constructor
 pygame.init()
 
-# Set up display
-screen_width = 800
-screen_height = 470
-screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("Flappy Bird")
+# screen resolution
+res = (800, 470)
 
-# Colors
-black = (0, 0, 0)
-white = (255, 255, 255)
-blue = (0, 0, 255)
-grey = (190, 190, 190, 255)
-brown = (138, 51, 36)
+# opens up a window
+screen = pygame.display.set_mode(res)
 
-# Clock to control frame rate
-clock = pygame.time.Clock()
+# white color
+color = (255, 255, 255)
 
-# Bird characteristics
-bird_width = 100
-bird_height = 50
-bird_x = 50
-bird_y = screen_height // 2
-bird_velocity = 17
-gravity = 0.25
+# blue color of the button
+color_blue = (80, 137, 181)
 
-# Load bird image
-bird_image = pygame.image.load("hell_map/raven_bird.png")
-bird_image = pygame.transform.scale(bird_image, (bird_width, bird_height))
+# light shade of the button
+color_light = (170, 170, 170)
 
-# Pipe characteristics
-pipe_width = 50
-pipe_gap = 225
-pipe_velocity = 2
-pipes = []
+# stores the width of the
+# screen into a variable
+width = screen.get_width()
 
-# Score
-score = 0
-font = pygame.font.Font(None, 36)
+# stores the height of the
+# screen into a variable
+height = screen.get_height()
 
+# defining a font
+smallfont = pygame.font.SysFont("Corbel", 35)
 
-# Functions
-def display_score(score):
-    score_display = font.render(f"Score: {score}", True, white)
-    screen.blit(score_display, (10, 10))
+# rendering a text written in
+# this font
+text = smallfont.render("Hell", True, color)
+text2 = smallfont.render("Christmas", True, color)
+text3 = smallfont.render("Rosabane", True, color)
 
+while True:
+    for ev in pygame.event.get():
+        if ev.type == pygame.QUIT:
+            pygame.quit()
 
-def draw_bird(x, y):
-    screen.blit(bird_image, (x, y))
+        # checks if a mouse is clicked
+        if ev.type == pygame.MOUSEBUTTONDOWN:
+            # if the mouse is clicked on the
+            # button the game is terminated
 
-
-def draw_pipe(x, y, height):
-    pygame.draw.rect(screen, brown, (x, y, pipe_width, height))
-    pygame.draw.rect(
-        screen, white, (x, y + height + pipe_gap, pipe_width, screen_height)
-    )
-
-
-def passed_pipe(pipe, bird_x):
-    return pipe["x"] < bird_x < pipe["x"] + pipe_width
-
-
-def collision_check(pipes, bird_x, bird_y):
-    for pipe in pipes:
-        if bird_x + bird_width > pipe["x"] and bird_x < pipe["x"] + pipe_width:
             if (
-                bird_y < pipe["height"]
-                or bird_y + bird_height > pipe["height"] + pipe_gap
+                width / 2 - 90 <= mouse[0] <= width / 2 + 90
+                and height / 2 - 80 <= mouse[1] <= height / 2 - 30
             ):
-                return True
-    if bird_y > screen_height or bird_y < 0:
-        return True
-    return False
+                hell_game.hell()
 
+            if (
+                width / 2 - 90 <= mouse[0] <= width / 2 + 90
+                and height / 2 <= mouse[1] <= height / 2 + 50
+            ):
+                flappy2.christmas()
 
-def passed_pipe(pipe, bird_x):
-    return pipe["x"] < bird_x < pipe["x"] + pipe_width
-
-
-# Add a new condition to reset the last_scored_pipe when the bird collides with a pipe
-if collision_check(pipes, bird_x, bird_y):
-    last_scored_pipe = None
-
-
-def restart_game():
-    global bird_y, bird_velocity, pipes, score, game_over
-    bird_y = screen_height // 2
-    bird_velocity = 17
-    pipes = []
-    score = 0
-    game_over = False
-
-
-last_scored_pipe = None
-
-# Game loop
-game_over = False
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        if (
-            not game_over
-            and event.type == pygame.KEYDOWN
-            and (event.key == pygame.K_SPACE or event.key == pygame.K_UP)
-        ):
-            bird_velocity = -6
-        if game_over and event.type == pygame.KEYDOWN and event.key == pygame.K_r:
-            restart_game()
+            if (
+                width / 2 - 90 <= mouse[0] <= width / 2 + 90
+                and height / 2 + 30 <= mouse[1] <= height / 2 + 80
+            ):
+                rosabane.rosa()
 
     # Load background image
-    background = pygame.image.load("hell_map/hell.jpg")
-    background = pygame.transform.scale(background, (screen_width, screen_height))
-
-    # Update bird position
-    bird_velocity += gravity
-    bird_y += bird_velocity
-
-    # Update pipes
-    for pipe in pipes:
-        pipe["x"] -= pipe_velocity
-
-    # Add new pipe and update score
-    if len(pipes) == 0 or pipes[-1]["x"] < screen_width - 200:
-        height = random.randint(50, screen_height - 50 - pipe_gap)
-        pipes.append({"x": screen_width, "height": height})
-
-    # Check for passed pipes and update the score
-    for pipe in pipes:
-        if not pipe.get("passed", False) and passed_pipe(pipe, bird_x):
-            pipe["passed"] = True
-            score += 1
-
-    # Check for collisions
-    if collision_check(pipes, bird_x, bird_y):
-        game_over = True
+    background = pygame.image.load("./start_page_background.webp")
+    background = pygame.transform.scale(background, (width, height))
 
     # Draw the background
     screen.blit(background, (0, 0))
 
-    # Draw everything
-    for pipe in pipes:
-        draw_pipe(pipe["x"], 0, pipe["height"])
-        draw_pipe(
-            pipe["x"],
-            pipe["height"] + pipe_gap,
-            screen_height - pipe["height"] - pipe_gap,
-        )
-    draw_bird(bird_x, bird_y)
-    display_score(score)
+    # stores the (x,y) coordinates into
+    # the variable as a tuple
+    mouse = pygame.mouse.get_pos()
 
-    if game_over:
-        font = pygame.font.Font(None, 36)
-        text = font.render("Game Over. Score: " + str(score), True, grey)
-        text_rect = text.get_rect(center=(screen_width // 2, screen_height // 2))
-        screen.blit(text, text_rect)
-        restart_text = font.render("Press 'R' to restart", True, grey)
-        restart_rect = restart_text.get_rect(
-            center=(screen_width // 2, screen_height // 2 + 40)
+    # if mouse is hovered on a button it
+    # changes to lighter shade
+    if (
+        width / 2 <= mouse[0] <= width / 2
+        and height / 2 - 80 <= mouse[1] <= height / 2 - 80
+    ):
+        pygame.draw.rect(
+            screen, color_ligth, [width / 2 - 90, height / 2 - 80, 180, 50]
         )
-        screen.blit(restart_text, restart_rect)
+    else:
+        pygame.draw.rect(
+            screen, color_blue, [width / 2 - 90, height / 2 + -80, 180, 50]
+        )
 
+    if width / 2 <= mouse[0] <= width / 2 and height / 2 <= mouse[1] <= height / 2:
+        pygame.draw.rect(screen, color_ligth, [width / 2 - 90, height / 2, 180, 50])
+    else:
+        pygame.draw.rect(screen, color_blue, [width / 2 - 90, height / 2, 180, 50])
+
+    if (
+        width / 2 <= mouse[0] <= width / 2
+        and height / 2 + 80 <= mouse[1] <= height / 2 + 80
+    ):
+        pygame.draw.rect(
+            screen, color_ligth, [width / 2 - 90, height / 2 + 80, 180, 50]
+        )
+    else:
+        pygame.draw.rect(screen, color_blue, [width / 2 - 90, height / 2 + 80, 180, 50])
+
+    # superimposing the text onto our button
+    screen.blit(text, (width / 2 - 75, height / 2 - 70))
+    screen.blit(text2, (width / 2 - 75, height / 2 + 10))
+    screen.blit(text3, (width / 2 - 75, height / 2 + 91))
+
+    # updates the frames of the game
     pygame.display.update()
-    clock.tick(60)
-
-pygame.quit()
