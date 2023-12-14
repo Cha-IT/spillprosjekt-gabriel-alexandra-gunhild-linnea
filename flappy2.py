@@ -47,7 +47,7 @@ def christmas():
     # Pipe characteristics
     pipe_width = 50
     pipe_gap = 225
-    pipe_velocity = 2
+    pipe_velocity = 2.75
     pipes = []
 
     # Score
@@ -151,10 +151,10 @@ def christmas():
 
         if game_over:
             font = pygame.font.Font(None, 36)
-            text = font.render("Game Over. Score: " + str(score), True, blue)
+            text = font.render("Game Over. Score: " + str(score), True, black)
             text_rect = text.get_rect(center=(screen_width // 2, screen_height // 2))
             screen.blit(text, text_rect)
-            restart_text = font.render("Press 'R' to restart", True, blue)
+            restart_text = font.render("Press 'R' to restart", True, black)
             restart_rect = restart_text.get_rect(
                 center=(screen_width // 2, screen_height // 2 + 40)
             )

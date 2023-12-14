@@ -47,7 +47,7 @@ def hell():
     # Pipe characteristics
     pipe_width = 50
     pipe_gap = 225
-    pipe_velocity = 2
+    pipe_velocity = 2.75
     pipes = []
 
     # Score
