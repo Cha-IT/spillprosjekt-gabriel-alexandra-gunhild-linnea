@@ -36,7 +36,7 @@ def christmas():
     bird_width = 150
     bird_height = 75
     bird_x = 50
-    bird_y = screen_height // 2
+    bird_y = screen_height // 2 - 150
     bird_velocity = 17
     gravity = 0.25
 
@@ -47,7 +47,7 @@ def christmas():
     # Pipe characteristics
     pipe_width = 50
     pipe_gap = 225
-    pipe_velocity = 2
+    pipe_velocity = 2.75
     pipes = []
 
     # Score
@@ -124,11 +124,12 @@ def christmas():
             height = random.randint(50, screen_height - 50 - pipe_gap)
             pipes.append({"x": screen_width, "height": height})
 
-        # Check for passed pipes and update the score
-        for pipe in pipes:
-            if not pipe.get("passed", False) and passed_pipe(pipe, bird_x):
-                pipe["passed"] = True
-                score += 1
+        if game_over == False:
+            # Check for passed pipes and update the score
+            for pipe in pipes:
+                if not pipe.get("passed", False) and passed_pipe(pipe, bird_x):
+                    pipe["passed"] = True
+                    score += 1
 
         # Check for collisions
         if collision_check(pipes, bird_x, bird_y):
@@ -150,10 +151,10 @@ def christmas():
 
         if game_over:
             font = pygame.font.Font(None, 36)
-            text = font.render("Game Over. Score: " + str(score), True, blue)
+            text = font.render("Game Over. Score: " + str(score), True, black)
             text_rect = text.get_rect(center=(screen_width // 2, screen_height // 2))
             screen.blit(text, text_rect)
-            restart_text = font.render("Press 'R' to restart", True, blue)
+            restart_text = font.render("Press 'R' to restart", True, black)
             restart_rect = restart_text.get_rect(
                 center=(screen_width // 2, screen_height // 2 + 40)
             )
