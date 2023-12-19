@@ -1,4 +1,5 @@
 import pygame
+import sys
 import flappy2
 import hell_game
 import rosabane
@@ -63,7 +64,7 @@ while True:
 
             if (
                 width / 2 - 90 <= mouse[0] <= width / 2 + 90
-                and height / 2 + 30 <= mouse[1] <= height / 2 + 20
+                and height / 2 + 30 <= mouse[1] <= height / 2 + 80
             ):
                 rosabane.rosa()
 
@@ -100,7 +101,7 @@ while True:
 
     if (
         width / 2 - 90 <= mouse[0] <= width / 2 + 90
-        and height / 2 <= mouse[1] <= height / 2 + 135
+        and height / 2 + 30 <= mouse[1] <= height / 2 + 80
     ):
         pygame.draw.rect(
             screen, color_light, [width / 2 - 90, height / 2 + 80, 180, 50]
