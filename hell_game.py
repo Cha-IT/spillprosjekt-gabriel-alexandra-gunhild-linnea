@@ -36,7 +36,7 @@ def hell():
     bird_width = 100
     bird_height = 50
     bird_x = 50
-    bird_y = screen_height // 2
+    bird_y = screen_height // 2 - 150
     bird_velocity = 17
     gravity = 0.25
 

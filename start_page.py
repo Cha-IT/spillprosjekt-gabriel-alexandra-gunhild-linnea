@@ -1,5 +1,4 @@
 import pygame
-import sys
 import flappy2
 import hell_game
 import rosabane
@@ -46,6 +45,7 @@ while True:
 
         # checks if a mouse is clicked
         if ev.type == pygame.MOUSEBUTTONDOWN:
+            mouse = pygame.mouse.get_pos()
             # if the mouse is clicked on the
             # button the game is terminated
 
@@ -63,7 +63,7 @@ while True:
 
             if (
                 width / 2 - 90 <= mouse[0] <= width / 2 + 90
-                and height / 2 + 30 <= mouse[1] <= height / 2 + 80
+                and height / 2 + 30 <= mouse[1] <= height / 2 + 20
             ):
                 rosabane.rosa()
 
@@ -81,25 +81,26 @@ while True:
     # if mouse is hovered on a button it
     # changes to lighter shade
     if (
-        width / 2 <= mouse[0] <= width / 2
-        and height / 2 - 80 <= mouse[1] <= height / 2 - 80
+        width / 2 - 90 <= mouse[0] <= width / 2 + 90
+        and height / 2 - 80 <= mouse[1] <= height / 2 - 30
     ):
         pygame.draw.rect(
             screen, color_light, [width / 2 - 90, height / 2 - 80, 180, 50]
         )
     else:
-        pygame.draw.rect(
-            screen, color_blue, [width / 2 - 90, height / 2 + -80, 180, 50]
-        )
+        pygame.draw.rect(screen, color_blue, [width / 2 - 90, height / 2 - 80, 180, 50])
 
-    if width / 2 <= mouse[0] <= width / 2 and height / 2 <= mouse[1] <= height / 2:
+    if (
+        width / 2 - 90 <= mouse[0] <= width / 2 + 90
+        and height / 2 <= mouse[1] <= height / 2 + 50
+    ):
         pygame.draw.rect(screen, color_light, [width / 2 - 90, height / 2, 180, 50])
     else:
         pygame.draw.rect(screen, color_blue, [width / 2 - 90, height / 2, 180, 50])
 
     if (
-        width / 2 <= mouse[0] <= width / 2
-        and height / 2 + 80 <= mouse[1] <= height / 2 + 80
+        width / 2 - 90 <= mouse[0] <= width / 2 + 90
+        and height / 2 <= mouse[1] <= height / 2 + 135
     ):
         pygame.draw.rect(
             screen, color_light, [width / 2 - 90, height / 2 + 80, 180, 50]

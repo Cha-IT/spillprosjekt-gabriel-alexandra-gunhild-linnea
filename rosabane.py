@@ -85,7 +85,7 @@ def rosa():
 
     def restart_game():
         global bird_y, bird_velocity, pipes, score, game_over
-        bird_y = screen_height // 2
+        bird_y = screen_height // 2 - 150  # Reset the bird's y-coordinate
         bird_velocity = 17
         pipes = []
         score = 0
